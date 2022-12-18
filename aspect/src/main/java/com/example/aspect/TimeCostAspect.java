@@ -10,10 +10,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 
 @Aspect
 public class TimeCostAspect {
-
     private static final String TAG = "sansui";
     private static final String POINTCUT_METHOD = "execution(* *..btnClick(..))";
-
 
     @Pointcut(POINTCUT_METHOD)
     public void timeCostPointCut() {}

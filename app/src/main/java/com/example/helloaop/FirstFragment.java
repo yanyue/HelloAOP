@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -43,6 +44,7 @@ public class FirstFragment extends Fragment {
     @ClickOnce
     private void btnClick(View v) {
         Log.i(TAG, "clicked");
+        Toast.makeText(v.getContext(), "clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
