@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
-public class OnceClickAspect {
+public class ClickOnceAspect {
     private static final String TAG = "sansui";
     private static final String POINTCUT_METHOD =
         "execution(@com.example.annotation.ClickOnce * *(..))";
@@ -26,8 +26,8 @@ public class OnceClickAspect {
     @Pointcut(POINTCUT_METHOD)
     public void clickOnce() {}
 
-    @Around("clickOnce() && @annotation(singleClick)")
-    public void aroundClickOnce(ProceedingJoinPoint joinPoint, ClickOnce singleClick)
+    @Around("clickOnce() && @annotation(clickOnce)")
+    public void aroundClickOnce(ProceedingJoinPoint joinPoint, ClickOnce clickOnce)
         throws Throwable {
         View v = null;
         for (Object arg : joinPoint.getArgs()) {
@@ -37,7 +37,7 @@ public class OnceClickAspect {
         }
         if (v != null) {
             long currentTime = System.currentTimeMillis();
-            if ( v.getId() == mLastId && currentTime - mLastTime < singleClick.value()) {
+            if ( v.getId() == mLastId && currentTime - mLastTime < clickOnce.value()) {
                 Log.w(TAG, "忽略多余的点击事件");
                 return;
             }
