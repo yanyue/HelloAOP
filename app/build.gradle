@@ -53,10 +53,11 @@ final def log = project.logger
 //注意：如果是 Library Module 下面这个行代码中的 applicationVariants 应该替换为 libraryVariants
 final def variants = project.android.applicationVariants
 //在构建工程时，执行编织
-variants.all { variant ->if (!variant.buildType.isDebuggable()) {
-    log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-//    return
-}
+variants.all { variant ->
+//    if (!variant.buildType.isDebuggable()) {
+//        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+//        return
+//    }
 
     JavaCompile javaCompile = variant.javaCompile
     javaCompile.doLast {

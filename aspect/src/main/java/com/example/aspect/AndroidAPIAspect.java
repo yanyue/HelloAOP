@@ -2,6 +2,8 @@ package com.example.aspect;
 
 import android.util.Log;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -25,5 +27,23 @@ public class AndroidAPIAspect {
         //方法名
         String methodName = methodSignature.getName();
         Log.i(TAG, "beforeToastShow fun:" + methodName + " className=" + className);
+    }
+
+    @Pointcut("execution(* android.app.Activity+.onCreate(..))")
+    public void activityOnCreate() {
+
+    }
+
+    @Around("activityOnCreate()")
+    public void processOnCreate(ProceedingJoinPoint joinPoint) throws Throwable {
+//        //拿到方法的签名
+//        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+//        //类名
+//        String className = methodSignature.getDeclaringType().getSimpleName();
+//        //方法名
+//        String methodName = methodSignature.getName();
+//        Log.i(TAG, "processOnCreate fun:" + methodName + " className=" + className);
+        joinPoint.proceed();
+        Log.i(TAG, "processOnCreate fun:");
     }
 }
